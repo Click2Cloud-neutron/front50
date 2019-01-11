@@ -1,0 +1,7 @@
+
+dependencies {
+    compile project(":front50-core")
+    compile spinnaker.dependency("clouddriverAws")
+    compile 'com.aliyun.oss:aliyun-sdk-oss:2.8.3'
+    testCompile project(":front50-test")
+}
