@@ -84,7 +84,11 @@ public class OssBucketProperties {
     this.proxyProtocol = proxyProtocol;
   }
 
-  public Boolean getVersioning() { return versioning; }
+  public Boolean getVersioning() {
+    return versioning;
+  }
 
-  public void setVersioning(Boolean versioning) { this.versioning = versioning; }
+  public void setVersioning(Boolean versioning) {
+    this.versioning = versioning;
+  }
 }

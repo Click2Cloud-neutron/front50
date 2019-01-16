@@ -31,11 +31,13 @@ import com.netflix.spinnaker.security.AuthenticatedRequest;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
+
 import static net.logstash.logback.argument.StructuredArguments.value;
 
 public class OssStorageService implements StorageService {
@@ -69,19 +71,18 @@ public class OssStorageService implements StorageService {
   public void ensureBucketExists() {
     if (aliyunOss.doesBucketExist(bucket))
       log.info("Bucket {} already available", value("bucket", bucket));
-    else
-      {
-        if (StringUtils.isEmpty(region)) {
-          log.info("Creating bucket {} in default region", value("bucket", bucket));
-          aliyunOss.createBucket(bucket);
-        } else {
-          log.info("Creating bucket {} in region {}",
-            value("bucket", bucket),
-            value("region", region)
-          );
-          aliyunOss.createBucket(bucket);
-        }
+    else {
+      if (StringUtils.isEmpty(region)) {
+        log.info("Creating bucket {} in default region", value("bucket", bucket));
+        aliyunOss.createBucket(bucket);
+      } else {
+        log.info("Creating bucket {} in region {}",
+          value("bucket", bucket),
+          value("region", region)
+        );
+        aliyunOss.createBucket(bucket);
       }
+    }
   }
 
   @Override
